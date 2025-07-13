@@ -54,6 +54,10 @@ export function CategoryCard({ category, documents }: Props) {
     <div className="mb-6 border p-4 rounded-md bg-black">
       <h2 className="text-xl mb-2 capitalize">{category}</h2>
 
+      <p className="text-sm text-gray-300 mb-2">
+        Allowed file extensions: <strong>.pdf</strong>, <strong>.jpg</strong>, <strong>.jpeg</strong>, <strong>.png</strong> - Maximum size: <strong>4MB</strong>.
+      </p>
+
       <fetcher.Form
         method="post"
         encType="multipart/form-data"
