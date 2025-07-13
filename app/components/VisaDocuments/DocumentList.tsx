@@ -34,7 +34,7 @@ export function DocumentList({ documents }: Props) {
             rel="noreferrer"
             className="text-blue-500 underline"
           >
-            📄 {doc.name}.{doc.ext}
+            {doc.type === "document" ? "📄" : "🖼️"} {doc.name}.{doc.ext}
           </a>
           <deleteFetcher.Form method="post" action={`/documents/delete?id=${doc.id}`}>
             <button className="text-red-500 hover:underline cursor-pointer">Delete</button>
