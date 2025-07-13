@@ -1,6 +1,6 @@
 import type { DocumentTag, VisaDocumentApiResponseGrouped } from "~/http/types/VisaDocumentApiResponse";
 import { useLoaderData } from "react-router";
-import { fetchFiles } from "~/http/api/visaDossier";
+import { fetchFiles } from "~/http/api/VisaDossierApi";
 import { CategoryCard } from "~/components/VisaDocuments/CategoryCard";
 import type { Route } from "../+types/root";
 

@@ -1,5 +1,5 @@
 import type { Route } from "../documents/+types/upload";
-import { uploadFile } from "~/http/api/visaDossier"
+import { uploadFile } from "~/http/api/VisaDossierApi"
 
 export function meta({}: Route.MetaArgs) {
   return [

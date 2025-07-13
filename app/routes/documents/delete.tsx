@@ -1,5 +1,5 @@
 import type { Route } from "../documents/+types/delete";
-import { deleteFile } from "~/http/api/visaDossier"
+import { deleteFile } from "~/http/api/VisaDossierApi"
 
 export function meta({}: Route.MetaArgs) {
   return [
