@@ -15,7 +15,3 @@ Interface for uploading, viewing and deleting documents organized by category.
 2. Instale as dependências `npm install / yarn install`
 
 3. use the command `npm run dev or yarn run dev`
-
-## How to run test cases
-1. After that you can use the command: `php artisan test`
-    - If you want to run an isolated test scenario, you can also use the command: `php artisan test --filter=test_file_name`
