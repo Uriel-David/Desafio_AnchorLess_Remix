@@ -45,6 +45,26 @@ export default function Home() {
     else if (success === false) toast.error(messages.error);
   };
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const allowedExtensions = ["pdf", "png", "jpg", "jpeg"];
+    const ext = file.name.split(".").pop()?.toLowerCase();
+
+    if (!ext || !allowedExtensions.includes(ext)) {
+      toast.error("File extension not allowed. Use PDF, PNG, JPG or JPEG.");
+      event.target.value = "";
+      return;
+    }
+
+    if (file && file.size > 4 * 1024 * 1024) {
+      toast.error("File size must be less than 4MB");
+      event.target.value = "";
+    }
+  }
+
   useEffect(() => {
     fetchers.forEach(({ fetcher, key }) => {
       const success = fetcher.data?.success;
@@ -106,6 +126,7 @@ export default function Home() {
                 name="file"
                 required
                 accept=".pdf,.png,.jpg,.jpeg"
+                onChange={handleFileChange}
                 className="cursor-pointer border rounded p-1 bg-black hover:bg-gray-600"
               />
               <button
