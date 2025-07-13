@@ -15,24 +15,42 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export const loader = async () => {
-  const documentList: VisaDocumentApiResponseGrouped = await fetchFiles();
-  return documentList.data;
-};
+  try {
+    const documentList: VisaDocumentApiResponseGrouped = await fetchFiles();
+    return { success: true, data: documentList.data };
+  } catch (error) {
+    console.error("Error when searching for documents:", error);
+    return {
+      success: false,
+      data: {
+        passport: [],
+        visa: [],
+        photo: [],
+      },
+    };
+  }
+}
 
 const categories: DocumentTag[] = ["passport", "visa", "photo"];
 
 export default function Home() {
-  const documents = useLoaderData<typeof loader>();
+  const { success, data } = useLoaderData<typeof loader>();
 
   return (
     <div className="p-6">
       <h1 className="text-2xl mb-4">Upload Documents</h1>
 
+      {!success && (
+        <div className="mb-4 text-red-500">
+          ⚠️ Failed to upload documents. Try again later.
+        </div>
+      )}
+
       {categories.map((category) => (
         <CategoryCard
           key={category}
           category={category}
-          documents={documents![category] ?? []}
+          documents={data[category] ?? []}
         />
       ))}
     </div>
